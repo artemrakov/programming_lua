@@ -27,6 +27,7 @@ function printsolution(a)
   io.write("\n")
 end
 
+-- 2.1
 function addqueen(a, n)
   if n > N then
     printsolution(a)
@@ -46,32 +47,26 @@ function addqueen(a, n)
   return false;
 end
 
+-- 2.2
 function allpossiblepermutations(a, n)
   if n > N then
-    for c = 1, N do
-      if not isplaceok(a, c, a[c]) then
+    for r = 1, N do
+      if not isplaceok(a, r, a[r]) then
         return
       end
     end
-    printsolution(a)
 
+    printsolution(a)
     return;
   end
 
+
   for c = 1, N do
-    for i = 1, n - 1 do
-      if a[i] == c then
-        break
-      end
-    end
-
     a[n] = c
-    addqueen(a, n + 1)
+    allpossiblepermutations(a, n + 1)
   end
-
-  return false
 end
 
 
 allpossiblepermutations({}, 1)
-print(isplaceok_count) -- addqueen 876, permutations 2212
+print(isplaceok_count) -- addqueen 876, permutations 50889536
